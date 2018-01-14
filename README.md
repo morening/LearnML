@@ -1,5 +1,5 @@
 ## 梯度下降法
-[practice0112](https://github.com/morening/LearnML/blob/master/gradient_descent/practice0112.py)
+[practice0112](https://github.com/morening/LearnML/blob/master/linear_regression/practice0112.py)
 
 拟合 y = 2*x1 + x2 + 3
 

@@ -4,7 +4,7 @@
 # @File    : practice0112.py
 # @Software: PyCharm
 
-#y = 2*x1 + x3 + 3
+#y = 2*x1 + x2 + 3
 
 import numpy as np, matplotlib.pyplot as plt, time
 
@@ -35,14 +35,14 @@ while True:
     a = sum_a
     b = sum_b
     c = sum_c
-    plt.plot([h(k) for k in x_test])
+    # plt.plot([h(k) for k in x_test])
 
     error = 0
     for x, y in zip(x_train, y_train):
         error += (h(x) - y)**2
     error = error / len_train
 
-    if error < 0.00001:
+    if error < 0.000001:
         break
 
 after = time.time()
@@ -57,4 +57,4 @@ print('#计算：')
 result = [h(x) for x in x_test]
 print(result)
 
-plt.show()
+# plt.show()
