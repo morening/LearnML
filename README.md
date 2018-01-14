@@ -21,6 +21,6 @@ c = 2.997658
 [8.999578310762395, 8.9987486901541605, 12.000123499408513, 15.99946771658961, 10.000036580513846, 11.998464258192042]
 ```
 
-<img width="50%" height="50%" src="https://github.com/morening/LearnML/blob/master/snapshot/gradient_descent/practice0112.png?raw=true" />
+<img width="50%" height="50%" src="https://github.com/morening/LearnML/blob/master/snapshot/linear_regression/practice0112.png?raw=true" />
 
 最后，感谢[《梯度下降原理及Python实现》](http://blog.csdn.net/programmer_wei/article/details/51941358)的帮助与指导，令我深刻理解梯度下降法的原理和完成python实现。
