@@ -1,7 +1,7 @@
 ## 梯度下降法
 [practice0112](https://github.com/morening/LearnML/blob/master/linear_regression/practice0112.py)
 
-拟合 y = 2*x1 + x2 + 3
+拟合 y = a*x1 + b*x2 + c
 
 训练集 x:[[1, 2], [2, 1], [2, 3], [3, 5], [1, 3], [4, 2], [7, 3], [4, 5], [11, 3], [8, 7]]
 
@@ -24,3 +24,29 @@ c = 2.997658
 <img width="50%" height="50%" src="https://github.com/morening/LearnML/blob/master/snapshot/linear_regression/practice0112.png?raw=true" />
 
 最后，感谢[《梯度下降原理及Python实现》](http://blog.csdn.net/programmer_wei/article/details/51941358)的帮助与指导，令我深刻理解梯度下降法的原理和完成python实现。
+
+## 梯度下降法（矩阵）
+[practice0115](https://github.com/morening/LearnML/blob/master/linear_regression/practice0115.py)
+
+设 y = theta0 + theta1*x1 + theta2*x2
+
+**测试结果**
+```
+#参数拟合：
+[[ 2.9999716 ]
+ [ 2.00000105]
+ [ 1.00000556]]
+#轮次：6528
+#测试结果：
+[[  6.99998377]
+ [  7.99997927]
+ [  9.99999038]
+ [ 14.00000255]
+ [  7.99998933]
+ [ 12.99998693]
+ [ 19.99999565]
+ [ 16.00000361]
+ [ 27.99999987]
+ [ 26.00001894]]
+```
+
