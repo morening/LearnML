@@ -52,9 +52,10 @@ c = 2.997658
 
 ## 逻辑回归
 
-拟合 y = theta0 + theta1*x1 + theta2*x2
-
 ### 测试结果（[data1](https://github.com/morening/LearnML/blob/master/data/data1.txt)）
+
+***一阶拟合***
+
 ```
 #参数拟合：
 [[-280.76963691]
@@ -167,6 +168,8 @@ c = 2.997658
 <img width="50%" height="50%" src="https://github.com/morening/LearnML/blob/master/snapshot/logistic_regression/practice0114_data1.png?raw=true" />
 
 ### 测试结果（[data2](https://github.com/morening/LearnML/blob/master/data/data2.txt)）
+
+***四阶拟合***
 
 ```
 #正确率：85.59322033898306%
