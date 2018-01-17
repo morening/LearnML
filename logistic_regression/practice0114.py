@@ -4,8 +4,6 @@
 # @File    : practice0114.py
 # @Software: PyCharm
 
-# z = theta0 + theta1*x1 + theta2*x2
-
 import numpy as np, matplotlib.pyplot as plt, pylab
 
 def load_data(path):
@@ -35,7 +33,7 @@ def g(X, theta):
     return X * theta
 
 def cost_function(X, Y, theta):
-    h = sigmoid(X*theta)
+    h = sigmoid(g(X, theta))
     return h - Y
 
 def populate_theta(X, Y, theta):
@@ -49,7 +47,8 @@ def populate_theta(X, Y, theta):
             right_cnt += 1
     return right_cnt/m
 
-def update_theta(X, Y, accuracy):
+
+def train_theta(X, Y, accuracy):
     rate = 0.001
     m, n = np.shape(X)
     theta = np.ones((n, 1))
@@ -58,16 +57,14 @@ def update_theta(X, Y, accuracy):
         cnt += 1
         error = cost_function(np.matrix(X), np.matrix(Y).transpose(), np.matrix(theta))
         temp = error.transpose() * np.matrix(X)
-        theta -= rate*temp.transpose()
+        theta -= rate * temp.transpose()
 
-        if populate_theta(X, Y, theta) >= accuracy:
+        populated_accuracy = populate_theta(X, Y, theta)
+        if populated_accuracy >= accuracy:
             break
-    return  theta, cnt
 
-def train_theta(X, Y, accuracy):
-    theta = update_theta(X, Y, accuracy)
+    return theta, cnt, populated_accuracy
 
-    return theta
 
 def show_contour(X, Y, theta, degree):
     pos = pylab.where(Y == 1)
@@ -76,7 +73,6 @@ def show_contour(X, Y, theta, degree):
     plt.scatter(X[neg, 0], X[neg, 1], c='r', marker='x')
 
     size = 100
-    m, n = np.shape(X)
     contour_x1, contour_x2 = np.meshgrid(np.linspace(np.min(X[:, 0]), np.max(X[:, 0]), size), np.linspace(np.min(X[:, 1]), np.max(X[:, 1]), size))
     contour_y = []
     for i in range(size):
@@ -86,7 +82,7 @@ def show_contour(X, Y, theta, degree):
             row.append(np.dot(feature, theta)[0])
         contour_y.append(row)
 
-    plt.contour(contour_x1, contour_x2, contour_y)
+    plt.contour(contour_x1, contour_x2, contour_y, [1])
     plt.show()
 
 def compute_result(X, theta):
@@ -99,9 +95,9 @@ def compute_result(X, theta):
             L.append(0)
     return L
 
-def show_final_result(feature, X, Y, theta, cnt, y, degree):
-    accuracy = populate_theta(feature, Y, theta)
-    print('#正确率：%s%%' % str(accuracy*100))
+def show_final_result(X, Y, theta, cnt, y, degree, populated_accuracy):
+    print('#拟合阶次：%d' % degree)
+    print('#正确率：%s%%' % str(populated_accuracy*100))
     print('#拟合轮次：%d' % cnt)
     print('#拟合参数：')
     print(theta)
@@ -118,6 +114,6 @@ accuracy = 0.85
 path = '../data/data2.txt'
 X, Y = load_data(path)
 feature = make_polynomial_feature(X[:, 0], X[:, 1], degree)
-theta, cnt = train_theta(feature, Y, accuracy)
+theta, cnt, populated_accuracy = train_theta(feature, Y, accuracy)
 y = compute_result(feature, theta)
-show_final_result(feature, X, Y, theta, cnt, y, degree)
+show_final_result(X, Y, theta, cnt, y, degree, populated_accuracy)
