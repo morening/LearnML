@@ -316,7 +316,7 @@ c = 2.997658
 
 <img width="50%" height="50%" src="https://github.com/morening/LearnML/blob/master/snapshot/knn/practice0118_dating.png?raw=true" />
 
-### 测试结果（[datingTestSet2](https://github.com/morening/LearnML/blob/master/data/knn/digits/)）
+### 测试结果（[digits](https://github.com/morening/LearnML/blob/master/data/knn/digits/)）
 
 ```
 # K = 10
