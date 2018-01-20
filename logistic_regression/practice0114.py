@@ -111,7 +111,7 @@ def show_final_result(X, Y, theta, cnt, y, degree, populated_accuracy):
 
 degree = 4
 accuracy = 0.85
-path = '../data/data2.txt'
+path = '../data/logistic_regression/data2.txt'
 X, Y = load_data(path)
 feature = make_polynomial_feature(X[:, 0], X[:, 1], degree)
 theta, cnt, populated_accuracy = train_theta(feature, Y, accuracy)
