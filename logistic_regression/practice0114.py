@@ -34,7 +34,7 @@ def g(X, theta):
 
 def cost_function(X, Y, theta):
     h = sigmoid(g(X, theta))
-    return h - Y
+    return Y - h
 
 def populate_theta(X, Y, theta):
     g_result = g(np.matrix(X), np.matrix(theta))
@@ -57,7 +57,7 @@ def train_theta(X, Y, accuracy):
         cnt += 1
         error = cost_function(np.matrix(X), np.matrix(Y).transpose(), np.matrix(theta))
         temp = error.transpose() * np.matrix(X)
-        theta -= rate * temp.transpose()
+        theta += rate * temp.transpose()
 
         populated_accuracy = populate_theta(X, Y, theta)
         if populated_accuracy >= accuracy:

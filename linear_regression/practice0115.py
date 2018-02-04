@@ -20,7 +20,7 @@ def h(theta, X):
     return y
 
 def cost_function(X, Y, theta):
-    return h(theta, X) - np.matrix(Y)
+    return np.matrix(Y) - h(theta, X)
 
 def update_theta(X, Y):
     rate = 0.001
@@ -31,7 +31,7 @@ def update_theta(X, Y):
         cnt += 1
         error = cost_function(X, Y, theta)
         temp = error.transpose() * np.matrix(X)
-        theta -= rate * temp.transpose()
+        theta += rate * temp.transpose()
         diff = cost_function(X, Y, theta)
         diff_error = 0
         for d in diff:
