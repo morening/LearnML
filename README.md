@@ -52,7 +52,7 @@ c = 2.997658
 
 ## 逻辑回归
 
-### 测试结果（[data1](https://github.com/morening/LearnML/blob/master/data/logistic_regression/data1.txt)）
+### 测试数据（[data1](https://github.com/morening/LearnML/blob/master/data/logistic_regression/data1.txt)）
 
 ***一阶拟合***
 
@@ -167,7 +167,7 @@ c = 2.997658
 
 <img width="50%" height="50%" src="https://github.com/morening/LearnML/blob/master/snapshot/logistic_regression/practice0114_data1.png?raw=true" />
 
-### 测试结果（[data2](https://github.com/morening/LearnML/blob/master/data/logistic_regression/data2.txt)）
+### 测试数据（[data2](https://github.com/morening/LearnML/blob/master/data/logistic_regression/data2.txt)）
 
 ***四阶拟合***
 
@@ -203,7 +203,7 @@ c = 2.997658
 
 ## KNN
 
-### 测试结果（[datingTestSet2](https://github.com/morening/LearnML/blob/master/data/knn/datingTestSet2.txt)）
+### 测试数据（[datingTestSet2](https://github.com/morening/LearnML/blob/master/data/knn/datingTestSet2.txt)）
 
 ```
 # K = 10
@@ -316,7 +316,7 @@ c = 2.997658
 
 <img width="50%" height="50%" src="https://github.com/morening/LearnML/blob/master/snapshot/knn/practice0118_dating.png?raw=true" />
 
-### 测试结果（[digits](https://github.com/morening/LearnML/blob/master/data/knn/digits/)）
+### 测试数据（[digits](https://github.com/morening/LearnML/blob/master/data/knn/digits/)）
 
 ```
 # K = 10
@@ -1271,4 +1271,15 @@ c = 2.997658
 4_13.txt 4.0
 3_32.txt 3.0
 3_26.txt 3.0
+```
+
+## Decision Tree
+### 测试数据（[weather_and_play](https://github.com/morening/LearnML/blob/master/data/decision_tree/weather_and_play.txt)）
+```
+ID3建树：
+{'label': 'outlook', 'child': {'sunny': {'label': 'humidity', 'child': {'high': 'no', 'normal': 'yes'}}, 'overcast': 'yes', 'rainy': {'label': 'windy', 'child': {'FALSE': 'yes', 'TRUE': 'no'}}}}
+C4.5建树：
+{'label': 'outlook', 'child': {'sunny': {'label': 'humidity', 'child': {'high': 'no', 'normal': 'yes'}}, 'overcast': 'yes', 'rainy': {'label': 'windy', 'child': {'FALSE': 'yes', 'TRUE': 'no'}}}}
+CART建树：
+{'label': 'outlook', 'child': {'overcast': 'yes', 'others': {'label': 'humidity', 'child': {'high': {'label': 'temperature', 'child': {'hot': 'no', 'others': {'label': 'windy', 'child': {'FALSE': 'yes/no', 'others': 'no'}}}}, 'others': {'label': 'windy', 'child': {'FALSE': 'yes', 'others': {'label': 'temperature', 'child': {'mild': 'yes', 'others': 'no'}}}}}}}}
 ```
