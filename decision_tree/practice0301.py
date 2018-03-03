@@ -119,6 +119,12 @@ def split_by_feature(datas, best_feature):
 
     return child_datas
 
+def copy_deeply(datas):
+    new_datas = []
+    for data in datas:
+        new_datas.append(data.copy())
+    return new_datas
+
 def create_decision_tree(labels, datas, algorithm):
     if len(labels) == 0:
         return
@@ -132,10 +138,10 @@ def create_decision_tree(labels, datas, algorithm):
 
     child_label = labels.copy()
     child_label.pop(best_feature)
-
-    child_datas = split_by_feature(datas, best_feature)
-    for key in child_datas:
-        parent['child'][key] = create_decision_tree(child_label, child_datas[key], algorithm)
+    child_datas = copy_deeply(datas)
+    splite_datas = split_by_feature(child_datas, best_feature)
+    for key in splite_datas:
+        parent['child'][key] = create_decision_tree(child_label, splite_datas[key], algorithm)
 
     return parent
 
@@ -144,7 +150,7 @@ def create_decision_tree(labels, datas, algorithm):
 def get_best_feature_by_CART(datas):
     M, N = np.shape(datas)
     best_feature = 0
-    best_splite = 0;
+    best_splite = 0
     min_gini = 99999
     for feature in range(N-1):
         counts = {}
@@ -166,7 +172,6 @@ def get_best_feature_by_CART(datas):
                 if key2 in counts[key3]:
                     sum_key += counts[key3][key2]
             gini = (sum_all/M)*2*(counts[key1][key2]/sum_all)*(1-counts[key1][key2]/sum_all) + ((M-sum_all)/M)*2*((sum_key-counts[key1][key2])/(M-sum_all))*(1-((sum_key-counts[key1][key2])/(M-sum_all)))
-            print(str(feature)+" "+key1+" "+str(gini))
             if min_gini > gini:
                 min_gini = gini
                 best_feature = feature
@@ -186,18 +191,19 @@ def calc_gini(datas):
     return gini
 
 def create_decision_tree_by_CART(labels, datas):
-    if len(labels) == 0:
-        return
     M, N = np.shape(datas)
     if calc_gini(datas) == 0:
         return datas[0][N-1]
+    if len(labels) == 1:
+        return 'yes/no'
     best_feature, best_splite = get_best_feature_by_CART(datas)
     parent = {}
     parent['label'] = labels[best_feature]
     new_labels = labels.copy()
     new_labels.pop(best_feature)
 
-    splite_datas = split_by_feature(datas, best_feature)
+    new_datas = copy_deeply(datas)
+    splite_datas = split_by_feature(new_datas, best_feature)
     new_splite_datas = {best_splite: splite_datas[best_splite]}
     list = []
     for splite in splite_datas:
@@ -212,11 +218,15 @@ def create_decision_tree_by_CART(labels, datas):
 
     return parent
 
-def print_decision_tree(root):
+def print_decision_tree(root, algorithm):
+    print(algorithm+"建树：")
     print(root)
 
 path = '../data/decision_tree/weather_and_play.txt'
 labels, datas = load_dataset(path)
+root = create_decision_tree(labels, datas, ID3)
+print_decision_tree(root, ID3)
 root = create_decision_tree(labels, datas, C45)
-# root = create_decision_tree_by_CART(labels, datas)
-print_decision_tree(root)
+print_decision_tree(root, C45)
+root = create_decision_tree_by_CART(labels, datas)
+print_decision_tree(root, CART)
