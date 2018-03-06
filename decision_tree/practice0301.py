@@ -33,9 +33,9 @@ def calc_basic_ent(datas, feature):
     M, N = np.shape(datas)
     counts = {}
     for data in datas:
-        if data[N-1] not in counts:
-            counts[data[N-1]] = 0
-        counts[data[N-1]] += 1
+        if data[feature] not in counts:
+            counts[data[feature]] = 0
+        counts[data[feature]] += 1
 
     basic_ent = 0
     for key in counts:
