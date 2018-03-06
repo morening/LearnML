@@ -1283,3 +1283,23 @@ C4.5建树：
 CART建树：
 {'label': 'outlook', 'child': {'overcast': 'yes', 'others': {'label': 'humidity', 'child': {'high': {'label': 'temperature', 'child': {'hot': 'no', 'others': {'label': 'windy', 'child': {'FALSE': 'yes/no', 'others': 'no'}}}}, 'others': {'label': 'windy', 'child': {'FALSE': 'yes', 'others': {'label': 'temperature', 'child': {'mild': 'yes', 'others': 'no'}}}}}}}}
 ```
+
+## Naive Bayes
+### 测试数据（[weather_and_play](https://github.com/morening/LearnML/blob/master/data/decision_tree/weather_and_play.txt)）
+```
+['sunny' 'hot' 'high' 'FALSE' 'no']=> right
+['sunny' 'hot' 'high' 'TRUE' 'no']=> right
+['overcast' 'hot' 'high' 'FALSE' 'yes']=> right
+['rainy' 'mild' 'high' 'FALSE' 'yes']=> right
+['rainy' 'cool' 'normal' 'FALSE' 'yes']=> right
+['rainy' 'cool' 'normal' 'TRUE' 'no'] => wrong
+['overcast' 'cool' 'normal' 'TRUE' 'yes']=> right
+['sunny' 'mild' 'high' 'FALSE' 'no']=> right
+['sunny' 'cool' 'normal' 'FALSE' 'yes']=> right
+['rainy' 'mild' 'normal' 'FALSE' 'yes']=> right
+['sunny' 'mild' 'normal' 'TRUE' 'yes']=> right
+['overcast' 'mild' 'high' 'TRUE' 'yes']=> right
+['overcast' 'hot' 'normal' 'FALSE' 'yes']=> right
+['rainy' 'mild' 'high' 'TRUE' 'no']=> right
+正确率：92.86 %
+```
