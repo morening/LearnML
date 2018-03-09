@@ -1303,3 +1303,27 @@ CART建树：
 ['rainy' 'mild' 'high' 'TRUE' 'no']=> right
 正确率：92.86 %
 ```
+
+## K-Means
+### 测试数据（[data](https://github.com/morening/LearnML/blob/master/data/k_means/testSet.txt)）
+```
+SSE: 1.629089
+```
+<img width="50%" height="50%" src="https://github.com/morening/LearnML/blob/master/snapshot/k_means/practice0307.png?raw=true" />
+
+
+## Ada-Boost
+```
+[feature: 0  split: 2.8  tree: 1  alpha:0.4236489301936017, feature: 0  split: 8.2  tree: 1  alpha:0.6496414920651304, feature: 1  split: 6.6000000000000005  tree: 0  alpha:0.9229133452491652]
+错误率：0.00 %
+[[ 1.  1. -1. -1.  1. -1.  1.  1. -1. -1.]]
+```
+<img width="50%" height="50%" src="https://github.com/morening/LearnML/blob/master/snapshot/ada_boost/practice0308.png?raw=true" />
+
+
+## Apriori
+```
+{1} => {3} conf: 1.00
+{5} => {2} conf: 1.00
+{2} => {5} conf: 1.00
+```
