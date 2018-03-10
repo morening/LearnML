@@ -79,12 +79,11 @@ def calc_support_rate(element, datas):
 
 def generate_mixed_elements(elements):
     mixed_elements = []
-    for i_element in elements:
-        for j_element in elements:
-            if i_element != j_element:
-                element = i_element.union(j_element)
-                if len(element) == len(i_element) + 1 and element not in mixed_elements:
-                    mixed_elements.append(element)
+    for i in range(len(elements)):
+        for j in range(i, len(elements)):
+            element = elements[i].union(elements[j])
+            if len(element) == len(elements[i]) + 1 and element not in mixed_elements:
+                mixed_elements.append(element)
 
     return mixed_elements
 
