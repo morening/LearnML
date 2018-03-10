@@ -1,18 +1,61 @@
 #-*-coding:utf-8-*-
-# @Time    : 2018/3/9 下午9:47
+# @Time    : 2018/3/10 上午11:01
 # @Author  : morening
-# @File    : practice0309.py
+# @File    : practice0310.py
 # @Software: PyCharm
 
 
-# 《机器学习实战》的说明例子
-# Apriori
-# practice0309
-# 频繁项集：如果一个项集是非频繁集，那么它的所有超集也是非频繁的
-# 关联规则：如果某条规则不满足最小可行度要求，那么该规则的所有子集也不满足最小可信度要求
+# 数据来自 http://archive.ics.uci.edu/ml/datasets/Congressional+Voting+Records
+# 数据文件 ../data/apriori/congressional_voting_records_data_set.txt
 
-def load_dataset():
-    datas = [{1, 3, 4}, {2, 3, 5}, {1, 2, 3, 5}, {2, 5}]
+# Attribute Information:
+#  1. Class Name: 2 (democrat, republican)
+#  2. handicapped-infants: 2 (y,n)
+#  3. water-project-cost-sharing: 2 (y,n)
+#  4. adoption-of-the-budget-resolution: 2 (y,n)
+#  5. physician-fee-freeze: 2 (y,n)
+#  6. el-salvador-aid: 2 (y,n)
+#  7. religious-groups-in-schools: 2 (y,n)
+#  8. anti-satellite-test-ban: 2 (y,n)
+#  9. aid-to-nicaraguan-contras: 2 (y,n)
+# 10. mx-missile: 2 (y,n)
+# 11. immigration: 2 (y,n)
+# 12. synfuels-corporation-cutback: 2 (y,n)
+# 13. education-spending: 2 (y,n)
+# 14. superfund-right-to-sue: 2 (y,n)
+# 15. crime: 2 (y,n)
+# 16. duty-free-exports: 2 (y,n)
+# 17. export-administration-act-south-africa: 2 (y,n)
+
+import numpy as np
+
+def load_dataset(path):
+    dataset = np.loadtxt(path, str)
+    return dataset
+
+# republican : '0'
+# democrat : '1'
+# bill(k)'y' : '2k'
+# bill(k)'n' : '2k+1'
+def convert_datas(dataset):
+    datas = []
+    for ds in dataset:
+        votes = ds.split(',')
+        data = {index for index in range(2*len(votes))}
+        for index in range(len(votes)):
+            if votes[index] == 'republican':
+                data.remove(1)
+            elif votes[index] == 'democrat':
+                data.remove(0)
+            elif votes[index] == 'n':
+                data.remove(2*index+1)
+            elif votes[index] == 'y':
+                data.remove(2*index)
+            else:
+                data.remove(2*index)
+                data.remove(2*index+1)
+        datas.append(data)
+
     return datas
 
 
@@ -130,9 +173,11 @@ def show_rules(rules):
         print("%s => %s conf: %f" % (str(rule[0]), str(rule[1]), rule[2]))
 
 min_support = 0.5
-min_confidence = 0.5
+min_confidence = 0.7
 print("最小支持度：%.2f，最小可信度：%.2f" % (min_support, min_confidence))
-datas = load_dataset()
+path = '../data/apriori/congressional_voting_records_data_set.txt'
+dataset = load_dataset(path)
+datas = convert_datas(dataset)
 support_list, support_datas = calc_support(datas, min_support)
 show_supports(support_datas)
 rules = make_relation_rules(support_list, support_datas, min_confidence)
